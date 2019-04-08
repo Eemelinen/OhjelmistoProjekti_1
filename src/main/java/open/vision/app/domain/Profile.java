@@ -20,7 +20,7 @@ public class Profile {
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "password", nullable = false)
+	@Column(name = "passwordCheck", nullable = false)
 	private String passwordCheck;
 	
 	@Column(name = "email", nullable = false)
