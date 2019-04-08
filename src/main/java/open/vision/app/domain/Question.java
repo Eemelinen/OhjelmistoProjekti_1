@@ -1,5 +1,7 @@
 package open.vision.app.domain;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String title;
+	private ArrayList<String> answers = new ArrayList<>();
 	
 	@ManyToOne
 	@JsonIgnore
@@ -34,7 +37,11 @@ public class Question {
 		this.id = null;
 		this.title = null;
 	}
-
+	
+	public Question(String title, ArrayList<String> answers) {
+		this.title = title;
+		this.answers = answers;
+	}
 
 	public Question(String title) {
 		super();
@@ -73,13 +80,16 @@ public class Question {
 	}
 
 
+	public ArrayList<String> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(ArrayList<String> answers) {
+		this.answers = answers;
+	}
+
 	@Override
 	public String toString() {
-		if(this.answer != null) {
-			return "Question [id=" + id + ", title=" + title + "answer =" + this.getAnswer() + "]";
-		} else {
-			return "Question [id=" + id + ", title=" + title + "]";
-		}
-		
+		return "Question [id=" + id + ", title=" + title + ", answers=" + answers + "]";
 	}
 }
