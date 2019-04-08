@@ -33,6 +33,14 @@ public class AppApplication {
 			qRepo.save(new Question("Oletko käyttänyt lukkarikonetta?"));
 			qRepo.save(new Question("Oletko kokenut lukkarikoneen toimivaksi?"));
 			qRepo.save(new Question("Mitä hyvää lukkarikoneessa mielestäsi on?"));
+			qRepo.save(new Question("Onko sinulla parannusehdotuksia Lukkarikoneen toimintaan?"));
+			qRepo.save(new Question("Mitä näistä ominaisuuksista olet käyttänyt? (Voit valita useita)"));
+			qRepo.save(new Question("Millä laitteella yleensä käytät Lukkarikonetta"));
+			qRepo.save(new Question("Käyttäisitkö Lukkarikonetta enemmän jos siitä olisi mobiiliversio tai sovellus?"));
+			qRepo.save(new Question(" Kuinka usein tarkastelet lukujärjestystäsi Lukkarikoneesta?"));
+			qRepo.save(new Question("Haluaisitko itse vaikuttaa Lukkarikoneen ulkoasuun?"));
+			qRepo.save(new Question("Onko sinulla ollut ongelmia Lukkarikoneen käytössä?"));
+			
 			
 			//Answers 
 			aRepo.save(new Answer("2019"));
