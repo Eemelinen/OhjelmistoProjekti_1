@@ -1,14 +1,19 @@
 package open.vision.app.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import open.vision.app.domain.Answer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Question {
@@ -18,24 +23,23 @@ public class Question {
 	private Long id;
 	private String title;
 	
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name="answerid")
-	private Answer answer;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("questions")
+//	@JsonIgnore
+	private List<Answer> answers;
 		
 	public Question() {
-		super();
-		this.id = null;
-		this.title = null;
-		this.answer = null;
+//		super();
+//		this.id = null;
+//		this.title = null;
+//		this.answer = null;
 	}
 
-	public Question(String title, Answer answer) {
+	public Question(String title) {
 		super();
 		this.title = title;
-		this.answer = answer;
+		// this.answer = answer;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -45,37 +49,25 @@ public class Question {
 		this.id = id;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
 	
-
-
-	public Answer getAnswer() {
-		return answer;
-	}
-
-
-	public void setAnswer(Answer answer) {
-		this.answer = answer;
-	}
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", title=" + title + ", answer=" + answer + "]";
+		return "Question [id=" + id + ", title=" + title + ", answers=" + answers + "]";
 	}
-	
 
-//	@Override
-//	public String toString() {
-//		return "Question [id=" + id + ", title=" + title + "]";
-//	}
-	
-	
 }
