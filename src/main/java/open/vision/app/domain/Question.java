@@ -1,7 +1,5 @@
 package open.vision.app.domain;
 
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +10,6 @@ import javax.persistence.ManyToOne;
 import open.vision.app.domain.Answer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
-
-
 @Entity
 public class Question {
 	
@@ -23,36 +17,29 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String title;
-	private ArrayList<String> answers = new ArrayList<>();
 	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="answerid")
 	private Answer answer;
-	
-	
-	
+		
 	public Question() {
 		super();
 		this.id = null;
 		this.title = null;
-	}
-	
-	public Question(String title, ArrayList<String> answers) {
-		this.title = title;
-		this.answers = answers;
+		this.answer = null;
 	}
 
-	public Question(String title) {
+	public Question(String title, Answer answer) {
 		super();
 		this.title = title;
+		this.answer = answer;
 	}
 
 
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -79,17 +66,16 @@ public class Question {
 		this.title = title;
 	}
 
-
-	public ArrayList<String> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(ArrayList<String> answers) {
-		this.answers = answers;
-	}
-
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", title=" + title + ", answers=" + answers + "]";
+		return "Question [id=" + id + ", title=" + title + ", answer=" + answer + "]";
 	}
+	
+
+//	@Override
+//	public String toString() {
+//		return "Question [id=" + id + ", title=" + title + "]";
+//	}
+	
+	
 }

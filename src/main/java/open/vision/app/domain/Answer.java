@@ -20,16 +20,13 @@ public class Answer {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy ="answer")
 	private List<Question> questions;
 
-	public Answer() {
-		super();
-		this.value = null;
-	}
+	public Answer() {}
 
 	public Answer(String value) {
 		super();
 		this.value = value;
 	}
-
+	
 	public Long getAnswerid() {
 		return answerid;
 	}
@@ -56,11 +53,13 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [answerid=" + answerid + ", value=" + value + ", questions=" + questions + "]";
+		return "Answer [answerid=" + answerid + ", value=" + value + "]";
 	}
-	
-	
-	
+
+//	@Override
+//	public String toString() {
+//		return "Answer [answerid=" + answerid + ", value=" + value + "]";
+//	}
 	
 	
 	
