@@ -1,13 +1,14 @@
 package open.vision.app.domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Answer {
@@ -17,19 +18,18 @@ public class Answer {
 	private Long answerid;
 	private String value;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy ="answer")
-	private List<Question> questions;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Question question;
 
-	public Answer() {
-		super();
-		this.value = null;
-	}
+	public Answer() {}
 
-	public Answer(String value) {
+	public Answer(String value, Question question) {
 		super();
 		this.value = value;
+		this.question = question;
 	}
-
+	
 	public Long getAnswerid() {
 		return answerid;
 	}
@@ -46,22 +46,17 @@ public class Answer {
 		this.value = value;
 	}
 
-	public List<Question> getQuestions() {
-		return questions;
+	public Question getQuestions() {
+		return question;
 	}
 
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
+	public void setQuestions(Question question) {
+		this.question = question;
 	}
 
 	@Override
 	public String toString() {
-		return "Answer [answerid=" + answerid + ", value=" + value + ", questions=" + questions + "]";
+		return "Answer [answerid=" + answerid + ", value=" + value + ", question=" + question + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

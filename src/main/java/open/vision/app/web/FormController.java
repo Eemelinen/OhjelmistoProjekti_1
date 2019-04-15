@@ -60,7 +60,7 @@ public class FormController {
 	
 	//RESTful service to get one questions
 	@RequestMapping(value="/question/{id}", method=RequestMethod.GET)
-	public @ResponseBody Optional<Question> findquestionRest(@PathVariable("id") Long id) {
+	public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long id) {
 		return qRepo.findById(id);
 	}
 	
@@ -68,5 +68,11 @@ public class FormController {
 	@RequestMapping(value="/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer> getAnswerRest(){
 		return (List<Answer>) aRepo.findAll();
+	}
+	
+	//RESTful service to get one answer by id
+	@RequestMapping(value="/answer/{answerid}", method=RequestMethod.GET)
+	public @ResponseBody Optional<Answer> findAnswerRest(@PathVariable("answerid") Long id) {
+		return aRepo.findById(id);
 	}
 }
