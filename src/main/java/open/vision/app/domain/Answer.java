@@ -7,56 +7,51 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Answer {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long answerid;
-	private String value;
+	private Long answerId;
+	private String answerValue;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "questionId")
 	private Question question;
-
-	public Answer() {}
-
-	public Answer(String value, Question question) {
+	
+	public Answer() {
 		super();
-		this.value = value;
+	}	
+
+	public Answer(String answerValue, Question question) {
+		super();
+		this.answerValue = answerValue;
 		this.question = question;
 	}
-	
-	public Long getAnswerid() {
-		return answerid;
+
+	public Long getAnswerId() {
+		return answerId;
 	}
 
-	public void setAnswerid(Long answerid) {
-		this.answerid = answerid;
+	public void setAnswerId(Long answerId) {
+		this.answerId = answerId;
 	}
 
-	public String getValue() {
-		return value;
+	public String getAnswerValue() {
+		return answerValue;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setAnswerValue(String answerValue) {
+		this.answerValue = answerValue;
 	}
 
-	public Question getQuestions() {
+	public Question getQuestion() {
 		return question;
 	}
 
-	public void setQuestions(Question question) {
+	public void setQuestion(Question question) {
 		this.question = question;
-	}
-
-	@Override
-	public String toString() {
-		return "Answer [answerid=" + answerid + ", value=" + value + ", question=" + question + "]";
-	}
-
+	}	
 }
